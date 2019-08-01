@@ -36,6 +36,7 @@ handleSearchState =(e) =>{
 
     return (
       <div className="App">
+        <h1>Monster Big</h1>
         <SearchBox  placeholder="Search Monsters" handleChange={this.handleSearchState}/>
         <CardList monsters={filteredMonsters} />
       </div>
