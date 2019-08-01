@@ -13,9 +13,6 @@ constructor(){
     monsters: [],
     searchField: ""
   }
-
-  this.handleSearchState = this.handleSearchState.bind(this)
-
 }
 
 componentDidMount(){
@@ -27,7 +24,7 @@ componentDidMount(){
   )
 }
 
-handleSearchState(e){
+handleSearchState =(e) =>{
   let field = e.target.value
   this.setState({searchField:field})
 }
