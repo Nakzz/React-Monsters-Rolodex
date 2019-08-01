@@ -2,13 +2,20 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {CardList} from '../src/component/card-list/card-list-component'
+import {SearchBox} from '../src/component/searchBox/searchBox-component'
+
 class App extends Component {
 
 constructor(){
   super();
   this.state = {
-    monsters: []
+    monsters: [],
+    searchField: ""
   }
+
+  this.handleSearchState = this.handleSearchState.bind(this)
+
 }
 
 componentDidMount(){
@@ -17,17 +24,23 @@ componentDidMount(){
     console.log(users)
     this.setState({monsters : users})
   })
-    
   )
 }
 
+handleSearchState(e){
+  let field = e.target.value
+  this.setState({searchField:field})
+}
+
   render(){
+    const { monsters, searchField} = this.state;
+    const filteredMonsters = monsters.filter(monster =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase()))
+
     return (
       <div className="App">
-       {this.state.monsters.map(monster => (
-        <h1 key={monster.id}> {monster.name} </h1>
-       )
-         )}
+        <SearchBox  placeholder="Search Monsters" handleChange={this.handleSearchState}/>
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
